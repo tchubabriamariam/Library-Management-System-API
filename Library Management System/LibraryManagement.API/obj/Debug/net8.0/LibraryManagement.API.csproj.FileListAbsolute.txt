@@ -147,3 +147,5 @@
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Persistance.dll
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Domain.pdb
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Persistance.pdb
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Infrustructure.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Infrustructure.pdb

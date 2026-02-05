@@ -23,4 +23,25 @@
       <ProjectReference Include="..\LibraryManagement.Domain\LibraryManagement.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\net8.0\LibraryM.39D1EBC6.Up2Date" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.dll" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.pdb" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.Persistance.sourcelink.json" />
+      <Content Include="obj\Debug\net8.0\Management.Persistance.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net8.0\Management.Persistance.assets.cache" />
+      <Content Include="obj\Debug\net8.0\Management.Persistance.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\Management.Persistance.csproj.nuget.dgspec.json" />
+      <Content Include="obj\Management.Persistance.csproj.nuget.g.props" />
+      <Content Include="obj\Management.Persistance.csproj.nuget.g.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net8.0\Management.Persistance.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net8.0\Management.Persistance.GlobalUsings.g.cs" />
+    </ItemGroup>
+
 </Project>
