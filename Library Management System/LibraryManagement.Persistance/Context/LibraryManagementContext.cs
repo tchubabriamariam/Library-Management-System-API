@@ -12,10 +12,10 @@ namespace LibraryManagement.Persistance.Context
             : base(options)
         {
         }
-
+        
         #endregion
 
-        #region DbSets
+        #region DbSets 
         public DbSet<Book> Books { get; set; } = null!;
         public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Patron> Patrons { get; set; } = null!;

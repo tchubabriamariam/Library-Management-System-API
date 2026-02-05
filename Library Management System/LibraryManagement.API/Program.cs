@@ -1,3 +1,4 @@
+using Library_Management_System.Infrustructure.Extentions;
 using LibraryManagement.Persistance;
 using LibraryManagement.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<LibraryManagementContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString(ConnectionString.DefaultConnection)));
 
+builder.Services.AddServices();
 
 var app = builder.Build();
 
