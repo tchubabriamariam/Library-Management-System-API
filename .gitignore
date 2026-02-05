@@ -1,0 +1,68 @@
+# =========================
+# .NET build output
+# =========================
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# =========================
+# Rider / JetBrains
+# =========================
+.idea/
+*.DotSettings.user
+*.sln.iml
+
+# =========================
+# Visual Studio / VS Code
+# =========================
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Logs / temp
+# =========================
+*.log
+*.tmp
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Test results / coverage
+# =========================
+TestResults/
+coverage/
+*.trx
+
+# =========================
+# NuGet / packages
+# =========================
+*.nupkg
+**/packages/
+.nuget/
+
+# =========================
+# Local DB / sqlite
+# =========================
+*.db
+*.db-wal
+*.db-shm
+
+# =========================
+# Generated XML docs
+# =========================
+*.xml
+
+# =========================
+# Secrets / local overrides
+# =========================
+appsettings.Development.json
+docker-compose.override.yml
