@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.API", "LibraryManagement.API\LibraryManagement.API.csproj", "{15FFD230-5C4C-4B99-9FC1-866281E0D4DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C940F5FB-5721-4FCE-AAF9-E09A73AAC054}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{98576233-712A-40B5-A49A-AD360A4F9429}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentation", "{1AF8D97B-9E05-4931-8F50-8DCDEF15B63A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrustructure", "infrustructure", "{649C9AD7-AAB9-4154-B5FB-0008400576CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15FFD230-5C4C-4B99-9FC1-866281E0D4DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FFD230-5C4C-4B99-9FC1-866281E0D4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FFD230-5C4C-4B99-9FC1-866281E0D4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FFD230-5C4C-4B99-9FC1-866281E0D4DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98576233-712A-40B5-A49A-AD360A4F9429} = {C940F5FB-5721-4FCE-AAF9-E09A73AAC054}
+		{649C9AD7-AAB9-4154-B5FB-0008400576CA} = {C940F5FB-5721-4FCE-AAF9-E09A73AAC054}
+		{1AF8D97B-9E05-4931-8F50-8DCDEF15B63A} = {C940F5FB-5721-4FCE-AAF9-E09A73AAC054}
+		{15FFD230-5C4C-4B99-9FC1-866281E0D4DF} = {1AF8D97B-9E05-4931-8F50-8DCDEF15B63A}
+	EndGlobalSection
+EndGlobal
