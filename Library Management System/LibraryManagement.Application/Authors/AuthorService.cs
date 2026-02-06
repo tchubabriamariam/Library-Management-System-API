@@ -1,3 +1,4 @@
+using Azure;
 using LibraryManagement.Application.Authors.DTOs;
 using LibraryManagement.Application.Books.DTOs;
 using LibraryManagement.Domain.Entity;
@@ -9,10 +10,14 @@ namespace LibraryManagement.Application.Authors;
 public class AuthorService : IAuthorService
 {
     private readonly BaseRepository<Author> _authorRepository;
+    private readonly BaseRepository<Book> _bookRepository;
 
-    public AuthorService(BaseRepository<Author> authorRepository)
+
+    public AuthorService(BaseRepository<Author> authorRepository, BaseRepository<Book> bookRepository)
     {
         _authorRepository = authorRepository;
+        _bookRepository = bookRepository;
+        
     }
 
     public async Task<PagedResult<AuthorDto>> GetAllAsync(
@@ -117,6 +122,65 @@ public class AuthorService : IAuthorService
             FirstName = author.FirstName,
             LastName = author.LastName,
             Biography = author.Biography
+        };
+    }
+    
+    public async Task<PagedResult<BookDto>> GetBooksByAuthorAsync(
+        CancellationToken token,
+        int authorId,
+        int page,
+        int pageSize)
+    {
+        var query = _bookRepository
+            .Query()
+            .Where(b => b.AuthorId == authorId)
+            .Select(b => new BookDto
+            {
+                Id = b.Id,
+                Title = b.Title,
+                ISBN = b.ISBN,
+                AuthorId = b.AuthorId,
+                AuthorName = b.Author.FirstName + " " + b.Author.LastName,
+                TotalCopies = b.Quantity,
+                AvailableCopies = Math.Max(
+                    0,
+                    b.Quantity - b.BorrowRecords.Count(br => br.ReturnDate == null)
+                )
+            });
+
+        var totalCount = await query.CountAsync(token);
+
+        var items = await query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(token);
+
+        return new PagedResult<BookDto>
+        {
+            Page = page,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            Items = items
+        };
+    }
+
+
+
+    private static BookDto BookServiceMapToDto(Book book)
+    {
+        var borrowedCount = book.BorrowRecords.Count(br => br.ReturnDate == null);
+
+        return new BookDto
+        {
+            Id = book.Id,
+            Title = book.Title,
+            ISBN = book.ISBN,
+            AuthorId = book.AuthorId,
+            AuthorName = (book.Author != null)
+                ? $"{book.Author.FirstName} {book.Author.LastName}"
+                : null,
+            TotalCopies = book.Quantity,
+            AvailableCopies = book.Quantity - borrowedCount
         };
     }
 }

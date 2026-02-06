@@ -16,4 +16,5 @@ public interface IAuthorService
     Task<bool> UpdateAsync(CancellationToken token, int id, UpdateAuthorDto dto);
 
     Task<bool> DeleteAsync(CancellationToken token, int id);
+    Task<PagedResult<BookDto>> GetBooksByAuthorAsync(CancellationToken token, int authorId, int page = 1, int pageSize = 10);
 }

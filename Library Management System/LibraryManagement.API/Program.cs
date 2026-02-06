@@ -1,10 +1,4 @@
-using LibraryManagement.Application.Books;
-using LibraryManagement.Domain.Entity;
-using LibraryManagement.Infrustructure.Authors;
-using LibraryManagement.Infrustructure.Books;
-using LibraryManagement.Infrustructure.BorrowRecords;
-using LibraryManagement.Infrustructure.Patrons;
-using LibraryManagement.Infrustructure.Repositories;
+using Library_Management_System.Infrustructure.extentions;
 using LibraryManagement.Persistance;
 using LibraryManagement.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +17,7 @@ builder.Services.AddDbContext<LibraryManagementContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString(ConnectionString.DefaultConnection)));
 
-builder.Services.AddScoped<BookRepository>();
-builder.Services.AddScoped<AuthorRepository>();
-builder.Services.AddScoped<PatronRepository>();
-builder.Services.AddScoped<BorrowRecordRepository>();
-builder.Services.AddScoped<BaseRepository<Book>>();
-builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddServices();
 
 
 var app = builder.Build();

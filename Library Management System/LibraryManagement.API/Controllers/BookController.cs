@@ -29,7 +29,10 @@ public class BooksController : ControllerBase
     public async Task<ActionResult<BookDto>> GetById(CancellationToken token, int id)
     {
         var book = await _bookService.GetByIdAsync(token, id);
-        if (book == null) return NotFound();
+        if (book == null)
+        {
+            return NotFound();
+        }
         return Ok(book);
     }
 
@@ -41,7 +44,9 @@ public class BooksController : ControllerBase
         [FromQuery] int pageSize = 10)
     {
         if (string.IsNullOrWhiteSpace(query))
+        {
             return BadRequest("query is required");
+        }
 
         var result = await _bookService.SearchAsync(token, query, page, pageSize);
         return Ok(result);
@@ -58,7 +63,10 @@ public class BooksController : ControllerBase
     public async Task<IActionResult> Update(CancellationToken token, int id, [FromBody] UpdateBookDto dto)
     {
         var ok = await _bookService.UpdateAsync(token, id, dto);
-        if (!ok) return NotFound();
+        if (!ok)
+        {
+            return NotFound();
+        }
         return NoContent();
     }
 
@@ -67,7 +75,10 @@ public class BooksController : ControllerBase
     public async Task<IActionResult> Delete(CancellationToken token, int id)
     {
         var ok = await _bookService.DeleteAsync(token, id);
-        if (!ok) return NotFound();
+        if (!ok)
+        {
+            return NotFound();
+        }
         return NoContent();
     }
 }
