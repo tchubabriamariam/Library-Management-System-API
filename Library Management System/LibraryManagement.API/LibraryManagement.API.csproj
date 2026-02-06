@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>Library_Management_System</RootNamespace>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,10 +25,6 @@
       <ProjectReference Include="..\LibraryManagement.Domain\LibraryManagement.Domain.csproj" />
       <ProjectReference Include="..\LibraryManagement.Infrustructure\LibraryManagement.Infrustructure.csproj" />
       <ProjectReference Include="..\LibraryManagement.Persistance\LibraryManagement.Persistance.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controllers\" />
     </ItemGroup>
 
     <ItemGroup>

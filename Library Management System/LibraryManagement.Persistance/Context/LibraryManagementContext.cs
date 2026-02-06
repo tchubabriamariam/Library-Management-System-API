@@ -43,24 +43,12 @@ namespace LibraryManagement.Persistance.Context
             }
             catch (Exception)
             {
-                var entries = ChangeTracker
-                    .Entries()
-                    .Where(e => e.Entity != null &&
-                                (e.State == EntityState.Modified ||
-                                 e.State == EntityState.Added ||
-                                 e.State == EntityState.Deleted))
-                    .ToList();
-
-                foreach (var entry in entries)
+                foreach (var entry in ChangeTracker.Entries()
+                             .Where(e => e.State is EntityState.Added or EntityState.Modified or EntityState.Deleted))
                 {
-                    entry.State = entry.State switch
-                    {
-                        EntityState.Added => EntityState.Modified,
-                        _ => EntityState.Unchanged
-                    };
+                    entry.State = EntityState.Detached;
                 }
-
-                throw;
+                throw;            
             }
         }
     }

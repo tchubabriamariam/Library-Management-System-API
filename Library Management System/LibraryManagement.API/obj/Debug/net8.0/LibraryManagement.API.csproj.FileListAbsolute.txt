@@ -129,8 +129,6 @@
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Persistance.pdb
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.csproj.AssemblyReference.cache
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.GeneratedMSBuildEditorConfig.editorconfig
-/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.AssemblyInfoInputs.cache
-/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.AssemblyInfo.cs
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.csproj.CoreCompileInputs.cache
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.MvcApplicationPartsAssemblyInfo.cs
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.MvcApplicationPartsAssemblyInfo.cache
@@ -149,3 +147,5 @@
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.pdb
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/LibraryManagement.API.genruntimeconfig.cache
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/obj/Debug/net8.0/ref/LibraryManagement.API.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Application.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Application.pdb
