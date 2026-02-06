@@ -43,4 +43,13 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    LibraryManagement.Persistance.Seed.LibraryManagementSeed.Initialize(app.Services);
+    app.Run();
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}
