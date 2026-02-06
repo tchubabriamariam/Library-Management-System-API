@@ -17,6 +17,7 @@ builder.Services.AddDbContext<LibraryManagementContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString(ConnectionString.DefaultConnection)));
 
+// services outside like we learned in extentions folder
 builder.Services.AddServices();
 
 
@@ -34,7 +35,7 @@ app.MapControllers();
 
 try
 {
-    LibraryManagement.Persistance.Seed.LibraryManagementSeed.Initialize(app.Services);
+    LibraryManagement.Persistance.Seed.LibraryManagementSeed.Initialize(app.Services); // for first values in database
     app.Run();
 }
 catch (Exception e)
