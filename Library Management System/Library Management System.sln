@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Infrustructure", "LibraryManagement.Infrustructure\LibraryManagement.Infrustructure.csproj", "{4C4AACCD-DF80-4138-AC0A-1DBB1069A8FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Application", "LibraryManagement.Application\LibraryManagement.Application.csproj", "{F0FF2F92-F0A8-4FB1-9DDE-635376556319}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{4C4AACCD-DF80-4138-AC0A-1DBB1069A8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C4AACCD-DF80-4138-AC0A-1DBB1069A8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C4AACCD-DF80-4138-AC0A-1DBB1069A8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0FF2F92-F0A8-4FB1-9DDE-635376556319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0FF2F92-F0A8-4FB1-9DDE-635376556319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0FF2F92-F0A8-4FB1-9DDE-635376556319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0FF2F92-F0A8-4FB1-9DDE-635376556319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{98576233-712A-40B5-A49A-AD360A4F9429} = {C940F5FB-5721-4FCE-AAF9-E09A73AAC054}
@@ -47,5 +53,6 @@ Global
 		{C95E8794-9650-4FA1-A0DE-8633AD4D824E} = {649C9AD7-AAB9-4154-B5FB-0008400576CA}
 		{26CD3F97-5100-4B1B-90FD-7E7634742F23} = {98576233-712A-40B5-A49A-AD360A4F9429}
 		{4C4AACCD-DF80-4138-AC0A-1DBB1069A8FE} = {649C9AD7-AAB9-4154-B5FB-0008400576CA}
+		{F0FF2F92-F0A8-4FB1-9DDE-635376556319} = {98576233-712A-40B5-A49A-AD360A4F9429}
 	EndGlobalSection
 EndGlobal

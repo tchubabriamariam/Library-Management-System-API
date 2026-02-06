@@ -76,5 +76,11 @@ namespace LibraryManagement.Infrustructure.Repositories
         }
 
         #endregion
+        
+        
+        public IQueryable<T> Query()
+        {
+            return _dbSet.AsQueryable();
+        }
     }
 }
