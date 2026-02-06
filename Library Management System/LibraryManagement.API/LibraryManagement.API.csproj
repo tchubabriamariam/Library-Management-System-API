@@ -29,4 +29,31 @@
       <Folder Include="Controllers\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\net8.0\apphost" />
+      <Content Include="obj\Debug\net8.0\Library Management System.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net8.0\Library Management System.assets.cache" />
+      <Content Include="obj\Debug\net8.0\Library Management System.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net8.0\Library Management System.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\Debug\net8.0\LibraryM.80653088.Up2Date" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.API.assets.cache" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.API.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.API.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net8.0\LibraryManagement.API.MvcApplicationPartsAssemblyInfo.cache" />
+      <Content Include="obj\Debug\net8.0\staticwebassets.build.json" />
+      <Content Include="obj\Library Management System.csproj.nuget.dgspec.json" />
+      <Content Include="obj\Library Management System.csproj.nuget.g.props" />
+      <Content Include="obj\Library Management System.csproj.nuget.g.targets" />
+      <Content Include="obj\LibraryManagement.API.csproj.nuget.g.props" />
+      <Content Include="obj\LibraryManagement.API.csproj.nuget.g.targets" />
+      <Content Include="obj\rider.project.model.nuget.info" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Debug\net8.0\Library Management System.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net8.0\Library Management System.GlobalUsings.g.cs" />
+      <Compile Include="obj\Debug\net8.0\LibraryManagement.API.MvcApplicationPartsAssemblyInfo.cs" />
+    </ItemGroup>
+
 </Project>
