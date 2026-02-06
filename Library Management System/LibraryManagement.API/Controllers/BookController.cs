@@ -36,21 +36,23 @@ public class BooksController : ControllerBase
         return Ok(book);
     }
 
-    [HttpGet("search")] // needs tests
+    [HttpGet("search")]
     public async Task<ActionResult<PagedResult<BookDto>>> Search(
         CancellationToken token,
-        [FromQuery] string query,
+        [FromQuery] string? title,
+        [FromQuery] string? author,
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 10)
     {
-        if (string.IsNullOrWhiteSpace(query))
+        if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(author))
         {
-            return BadRequest("query is required");
+            return BadRequest("At least one search parameter title or author is required");
         }
 
-        var result = await _bookService.SearchAsync(token, query, page, pageSize);
+        var result = await _bookService.SearchAsync(token, title, author, page, pageSize);
         return Ok(result);
     }
+
 
     [HttpPost] // i have one author with id 1 and use that, works
     public async Task<ActionResult<int>> Create(CancellationToken token, [FromBody] CreateBookDto dto)
@@ -81,4 +83,21 @@ public class BooksController : ControllerBase
         }
         return NoContent();
     }
+    
+    
+    
+    [HttpGet("{id:int}/availability")]
+    public async Task<ActionResult<BookAvailabilityDto>> GetAvailability(
+        CancellationToken token,
+        int id)
+    {
+        var availability = await _bookService.GetAvailabilityAsync(token, id);
+        if (availability == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(availability);
+    }
+
 }

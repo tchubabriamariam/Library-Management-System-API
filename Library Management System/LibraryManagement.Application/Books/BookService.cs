@@ -57,25 +57,35 @@ public class BookService : IBookService
 
     public async Task<PagedResult<BookDto>> SearchAsync(
         CancellationToken token,
-        string query,
+        string? title,
+        string? author,
         int page = 1,
         int pageSize = 10)
     {
         page = page < 1 ? 1 : page;
         pageSize = pageSize < 1 ? 10 : pageSize;
 
-        var booksQuery = _bookRepository
+        var query = _bookRepository
             .Query()
             .Include(b => b.Author)
             .Include(b => b.BorrowRecords)
-            .Where(b =>
-                b.Title.Contains(query) ||
-                b.ISBN.Contains(query) ||
-                b.Author.FirstName.Contains(query) || b.Author.LastName.Contains(query));
+            .AsQueryable();
 
-        var totalCount = await booksQuery.CountAsync(token);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            query = query.Where(b => b.Title.Contains(title));
+        }
 
-        var books = await booksQuery
+        if (!string.IsNullOrWhiteSpace(author))
+        {
+            query = query.Where(b =>
+                b.Author.FirstName.Contains(author) ||
+                b.Author.LastName.Contains(author));
+        }
+
+        var totalCount = await query.CountAsync(token);
+
+        var books = await query
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync(token);
@@ -88,6 +98,8 @@ public class BookService : IBookService
             Items = books.Select(MapToDto).ToList()
         };
     }
+
+
 
     public async Task<int> CreateAsync(CancellationToken token, CreateBookDto dto)
     {
@@ -151,4 +163,33 @@ public class BookService : IBookService
             AvailableCopies = book.Quantity - borrowedCount
         };
     }
+    
+    
+    
+    public async Task<BookAvailabilityDto?> GetAvailabilityAsync(CancellationToken token, int id)
+    {
+        var book = await _bookRepository
+            .Query()
+            .Include(b => b.BorrowRecords)
+            .FirstOrDefaultAsync(b => b.Id == id, token);
+
+        if (book == null)
+        {
+            return null;
+        }
+
+        var borrowedCount = book.BorrowRecords.Count(br => br.ReturnDate == null);
+        var availableCopies = Math.Max(
+            book.Quantity - book.BorrowRecords.Count(br => br.ReturnDate == null),
+            0
+        );
+       
+        return new BookAvailabilityDto
+        {
+            BookId = book.Id,
+            AvailableCopies = availableCopies,
+            IsAvailable = availableCopies > 0
+        };
+    }
+
 }
