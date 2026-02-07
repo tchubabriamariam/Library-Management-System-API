@@ -19,7 +19,9 @@ builder.Services.AddDbContext<LibraryManagementContext>(options =>
 
 // services outside like we learned in extentions folder
 builder.Services.AddServices();
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 var app = builder.Build();
 

@@ -20,6 +20,7 @@ public class PatronService : IPatronService
 
     public async Task<PagedResult<PatronDto>> GetAllPatronsAsync(int pageNumber, int pageSize, CancellationToken token = default)
     {
+        _logger.LogInformation("Getting all patrons");
         var query = _patronRepository.Query();
         
         var totalCount = query.Count();
@@ -40,12 +41,14 @@ public class PatronService : IPatronService
 
     public async Task<PatronDto?> GetPatronByIdAsync(int id, CancellationToken token = default)
     {
+        _logger.LogInformation("Getting patron by id");
         var patron = await _patronRepository.GetAsync(token, id);
         return patron == null ? null : MapToDto(patron);
     }
 
     public async Task<IEnumerable<BookDto>> GetBorrowedBooksAsync(int patronId, CancellationToken token = default)
     {
+        _logger.LogInformation("Getting borrowed books");
         var patronWithRecords = await _patronRepository.GetWithBorrowRecordsAsync(token, patronId);
     
         if (patronWithRecords == null)
@@ -65,6 +68,7 @@ public class PatronService : IPatronService
 
     public async Task<PatronDto> CreatePatronAsync(CreatePatronDto createDto, CancellationToken token = default)
     {
+        _logger.LogInformation("Creating patron");
         var patron = new Patron
         {
             FirstName = createDto.FirstName,
@@ -79,6 +83,7 @@ public class PatronService : IPatronService
     }
     public async Task<bool> UpdatePatronAsync(int id, UpdatePatronDto updateDto, CancellationToken token = default)
     {
+        _logger.LogInformation("Updating patron");
         var existingPatron = await _patronRepository.GetAsync(token, id);
         if (existingPatron == null) return false;
 
@@ -91,6 +96,7 @@ public class PatronService : IPatronService
 
     public async Task<bool> DeletePatronAsync(int id, CancellationToken token = default)
     {
+        _logger.LogInformation("Deleting patron");
         var existingPatron = await _patronRepository.GetAsync(token, id);
         if (existingPatron == null) return false;
 
