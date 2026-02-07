@@ -27,18 +27,18 @@ namespace LibraryManagement.Infrustructure.Repositories
 
         public async Task<List<T>> GetAllAsync(CancellationToken token)
         {
-            return await _dbSet.ToListAsync(token);
+            return await _dbSet.ToListAsync(token).ConfigureAwait(false);
         }
 
         public async Task<T?> GetAsync(CancellationToken token, params object[] key)
         {
-            return await _dbSet.FindAsync(key, token);
+            return await _dbSet.FindAsync(key, token).ConfigureAwait(false);
         }
 
         public async Task AddAsync(CancellationToken token, T entity)
         {
-            await _dbSet.AddAsync(entity, token);
-            await _context.SaveChangesAsync(token);
+            await _dbSet.AddAsync(entity, token).ConfigureAwait(false);
+            await _context.SaveChangesAsync(token).ConfigureAwait(false);
         }
 
         public async Task UpdateAsync(CancellationToken token, T entity)
@@ -47,7 +47,7 @@ namespace LibraryManagement.Infrustructure.Repositories
                 return;
 
             _dbSet.Update(entity);
-            await _context.SaveChangesAsync(token);
+            await _context.SaveChangesAsync(token).ConfigureAwait(false);
         }
 
         public async Task RemoveAsync(CancellationToken token, T entity)
@@ -56,7 +56,7 @@ namespace LibraryManagement.Infrustructure.Repositories
                 return;
 
             _dbSet.Remove(entity);
-            await _context.SaveChangesAsync(token);
+            await _context.SaveChangesAsync(token).ConfigureAwait(false);
         }
 
         public async Task RemoveAsync(CancellationToken token, params object[] key)
@@ -67,12 +67,12 @@ namespace LibraryManagement.Infrustructure.Repositories
                 return;
 
             _dbSet.Remove(entity);
-            await _context.SaveChangesAsync(token);
+            await _context.SaveChangesAsync(token).ConfigureAwait(false);
         }
 
-        public Task<bool> AnyAsync(CancellationToken token, Expression<Func<T, bool>> predicate)
+        public async Task<bool> AnyAsync(CancellationToken token, Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.AnyAsync(predicate, token);
+            return await _dbSet.AnyAsync(predicate, token).ConfigureAwait(false);
         }
 
         #endregion

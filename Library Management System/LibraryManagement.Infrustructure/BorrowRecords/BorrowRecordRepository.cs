@@ -17,7 +17,8 @@ namespace LibraryManagement.Infrustructure.BorrowRecords
             return await _dbSet
                 .Include(x => x.Book)
                 .Include(x => x.Patron)
-                .ToListAsync(token);
+                .ToListAsync(token)
+                .ConfigureAwait(false);
         }
 
         public async Task<List<BorrowRecord>> GetOverdueAsync(CancellationToken token)
@@ -28,7 +29,8 @@ namespace LibraryManagement.Infrustructure.BorrowRecords
                 .Include(x => x.Book)
                 .Include(x => x.Patron)
                 .Where(x => x.ReturnDate == null && x.DueDate < today)
-                .ToListAsync(token);
+                .ToListAsync(token)
+                .ConfigureAwait(false);
         }
 
         public async Task<BorrowRecord?> GetActiveBorrowAsync(CancellationToken token, int bookId, int patronId)
@@ -38,7 +40,7 @@ namespace LibraryManagement.Infrustructure.BorrowRecords
                         x.BookId == bookId &&
                         x.PatronId == patronId &&
                         x.ReturnDate == null,
-                    token);
+                    token).ConfigureAwait(false);
         }
     }
 }

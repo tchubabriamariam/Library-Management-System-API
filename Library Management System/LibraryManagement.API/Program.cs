@@ -1,4 +1,5 @@
 using Library_Management_System.Infrustructure.extentions;
+using LibraryManagement.API.Infrastructure.middlewares;
 using LibraryManagement.Persistance;
 using LibraryManagement.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

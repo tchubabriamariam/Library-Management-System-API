@@ -16,7 +16,8 @@ namespace LibraryManagement.Infrustructure.Patrons
             return await _dbSet
                 .Include(x => x.BorrowRecords)
                 .ThenInclude(x => x.Book)
-                .ToListAsync(token);
+                .ToListAsync(token)
+                .ConfigureAwait(false);;
         }
 
         public async Task<Patron?> GetWithBorrowRecordsAsync(CancellationToken token, int id)
@@ -24,7 +25,8 @@ namespace LibraryManagement.Infrustructure.Patrons
             return await _dbSet
                 .Include(x => x.BorrowRecords)
                 .ThenInclude(x => x.Book)
-                .FirstOrDefaultAsync(x => x.Id == id, token);
+                .FirstOrDefaultAsync(x => x.Id == id, token)
+                .ConfigureAwait(false);
         }
     }
 }

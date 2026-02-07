@@ -15,14 +15,16 @@ namespace LibraryManagement.Infrustructure.Authors
         {
             return await _dbSet
                 .Include(x => x.Books)
-                .ToListAsync(token);
+                .ToListAsync(token)
+                .ConfigureAwait(false);
         }
 
         public async Task<Author?> GetWithBooksAsync(CancellationToken token, int id)
         {
             return await _dbSet
                 .Include(x => x.Books)
-                .FirstOrDefaultAsync(x => x.Id == id, token);
+                .FirstOrDefaultAsync(x => x.Id == id, token)
+                .ConfigureAwait(false);
         }
     }
 }

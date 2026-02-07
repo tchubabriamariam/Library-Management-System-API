@@ -51,6 +51,11 @@ public class BookService : IBookService
             .Include(b => b.Author)
             .Include(b => b.BorrowRecords)
             .FirstOrDefaultAsync(b => b.Id == id, token);
+        
+        // tested exception handler
+        //int y = 0;
+        //int x = 10 / y;
+        
 
         return book == null ? null : MapToDto(book);
     }
