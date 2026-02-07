@@ -1,5 +1,6 @@
 using LibraryManagement.Application.Authors;
 using LibraryManagement.Application.Books;
+using LibraryManagement.Application.BorrowRecords;
 using LibraryManagement.Application.Patrons;
 using LibraryManagement.Domain.Entity;
 using LibraryManagement.Infrustructure.Authors;
@@ -23,5 +24,6 @@ public static class ServiceExtensions
         services.AddScoped<IBookService, BookService>();
         services.AddScoped<IAuthorService, AuthorService>();
         services.AddScoped<IPatronService, PatronService>();
+        services.AddScoped<IBorrowRecordService, BorrowRecordService>();
     }
 }
