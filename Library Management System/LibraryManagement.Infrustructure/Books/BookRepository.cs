@@ -11,20 +11,23 @@ namespace LibraryManagement.Infrustructure.Books
         {
         }
 
-        public async Task<List<Book>> SearchAsync(CancellationToken token, string? title, string? author)
+        public IQueryable<Book> SearchQuery(string? title, string? author)
         {
             var query = _dbSet
-                .Include(x => x.Author)
+                .Include(b => b.Author)
+                .Include(b => b.BorrowRecords)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(title))
-                query = query.Where(x => x.Title.Contains(title));
+                query = query.Where(b => b.Title.Contains(title));
 
             if (!string.IsNullOrWhiteSpace(author))
-                query = query.Where(x =>
-                    (x.Author.FirstName + " " + x.Author.LastName).Contains(author));
+                query = query.Where(b =>
+                    b.Author.FirstName.Contains(author) ||
+                    b.Author.LastName.Contains(author));
 
-            return await query.ToListAsync(token);
+            return query;
         }
+
     }
 }

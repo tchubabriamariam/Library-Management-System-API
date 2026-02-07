@@ -8,9 +8,9 @@ namespace LibraryManagement.Application.Books;
 
 public class BookService : IBookService
 {
-    private readonly BaseRepository<Book> _bookRepository;
+    private readonly BookRepository _bookRepository;
 
-    public BookService(BaseRepository<Book> bookRepository)
+    public BookService(BookRepository bookRepository)
     {
         _bookRepository = bookRepository;
     }
@@ -65,23 +65,7 @@ public class BookService : IBookService
         page = page < 1 ? 1 : page;
         pageSize = pageSize < 1 ? 10 : pageSize;
 
-        var query = _bookRepository
-            .Query()
-            .Include(b => b.Author)
-            .Include(b => b.BorrowRecords)
-            .AsQueryable();
-
-        if (!string.IsNullOrWhiteSpace(title))
-        {
-            query = query.Where(b => b.Title.Contains(title));
-        }
-
-        if (!string.IsNullOrWhiteSpace(author))
-        {
-            query = query.Where(b =>
-                b.Author.FirstName.Contains(author) ||
-                b.Author.LastName.Contains(author));
-        }
+        var query = _bookRepository.SearchQuery(title, author);
 
         var totalCount = await query.CountAsync(token);
 
@@ -98,7 +82,6 @@ public class BookService : IBookService
             Items = books.Select(MapToDto).ToList()
         };
     }
-
 
 
     public async Task<int> CreateAsync(CancellationToken token, CreateBookDto dto)
