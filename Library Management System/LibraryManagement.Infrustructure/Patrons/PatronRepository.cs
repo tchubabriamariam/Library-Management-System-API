@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrustructure.Patrons
 {
-    public class PatronRepository : BaseRepository<Patron>
+    public class PatronRepository : BaseRepository<Patron>, IPatronRepository
     {
         public PatronRepository(LibraryManagementContext context) : base(context)
         {

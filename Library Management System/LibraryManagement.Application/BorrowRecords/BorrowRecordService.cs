@@ -24,7 +24,7 @@ namespace LibraryManagement.Application.BorrowRecords
             _logger = logger;
         }
 
-        public async Task<PagedResult<BorrowRecordDto>> GetAllAsync(BorrowRecordFilterDto filter, CancellationToken ct = default)
+        public async Task<PagedResult<BorrowRecordDto>> GetAllAsync(BorrowRecordFilterDto filter, CancellationToken token = default)
         {
             var query = _borrowRepository.Query();
 
@@ -50,15 +50,15 @@ namespace LibraryManagement.Application.BorrowRecords
             };
         }
 
-        public async Task<BorrowRecordDto?> GetByIdAsync(int id, CancellationToken ct = default)
+        public async Task<BorrowRecordDto?> GetByIdAsync(int id, CancellationToken token = default)
         {
-            var record = await _borrowRepository.GetAsync(ct, id);
+            var record = await _borrowRepository.GetAsync(token, id);
             return record == null ? null : MapToDto(record);
         }
 
-        public async Task<BorrowRecordDto> CheckOutBookAsync(CreateBorrowRecordDto createDto, CancellationToken ct = default)
+        public async Task<BorrowRecordDto> CheckOutBookAsync(CreateBorrowRecordDto createDto, CancellationToken token = default)
         {
-            var availability = await _bookService.GetAvailabilityAsync(ct, createDto.BookId);
+            var availability = await _bookService.GetAvailabilityAsync(token, createDto.BookId);
             
             if (availability == null || !availability.IsAvailable)
             {
@@ -75,14 +75,14 @@ namespace LibraryManagement.Application.BorrowRecords
                 Status = BorrowStatus.Borrowed 
             };
 
-            await _borrowRepository.AddAsync(ct, record);
+            await _borrowRepository.AddAsync(token, record);
             
             return MapToDto(record);
         }
 
-        public async Task<bool> ReturnBookAsync(int id, CancellationToken ct = default)
+        public async Task<bool> ReturnBookAsync(int id, CancellationToken token = default)
         {
-            var record = await _borrowRepository.GetAsync(ct, id);
+            var record = await _borrowRepository.GetAsync(token, id);
             
             if (record == null || record.ReturnDate != null)
                 return false;
@@ -90,13 +90,13 @@ namespace LibraryManagement.Application.BorrowRecords
             record.ReturnDate = DateTime.UtcNow;
             record.Status = BorrowStatus.Returned;
 
-            await _borrowRepository.UpdateAsync(ct, record);
+            await _borrowRepository.UpdateAsync(token, record);
             return true;
         }
 
-        public async Task<IEnumerable<BorrowRecordDto>> GetOverdueRecordsAsync(CancellationToken ct = default)
+        public async Task<IEnumerable<BorrowRecordDto>> GetOverdueRecordsAsync(CancellationToken token = default)
         {
-            var records = await _borrowRepository.GetOverdueAsync(ct);
+            var records = await _borrowRepository.GetOverdueAsync(token);
             return records.Select(MapToDto);
         }
 

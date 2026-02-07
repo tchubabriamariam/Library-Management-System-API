@@ -8,6 +8,7 @@ namespace LibraryManagement.Application.Patrons;
 
 public class PatronService : IPatronService
 {
+    // i want to inject here IPatronRepository but cant since it doesnt have baserepository features which i need
     private readonly PatronRepository _patronRepository;
     private readonly ILogger<PatronService> _logger;
 
