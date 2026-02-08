@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Net;
 using System.Xml;
+using LibraryManagement.Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Formatting = Newtonsoft.Json.Formatting;
 
@@ -65,19 +66,20 @@ namespace LibraryManagement.API.Infrastructure.middlewares
         }
 
         // Handle specific Library Exceptions
-        private void HandleException(InvalidOperationException exception)
+        private void HandleException(EntityNotFoundException exception)
         {
-            Code = "BusinessRuleViolation";
-            Status = (int)HttpStatusCode.BadRequest;
-            Title = exception.Message; // e.g., "Book is not available" 
+            Code = exception.Code;
+            Status = (int)HttpStatusCode.NotFound;
+            Title = "რესურსი ვერ მოიძებნა"; 
+            Detail = exception.Message;
         }
 
-
-        private void HandleException(Exception exception)
+        private void HandleException(BookUnavailableException exception)
         {
-            Code = UnhandlerErrorCode;
-            Status = (int)HttpStatusCode.InternalServerError;
-            Title = "An unexpected error occurred on the server."; // Requirement 134 
+            Code = exception.Code;
+            Status = (int)HttpStatusCode.BadRequest;
+            Title = "წიგნი მიუწვდომელია"; 
+            Detail = exception.Message;
         }
     }
 }

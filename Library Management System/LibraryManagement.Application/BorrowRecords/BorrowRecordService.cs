@@ -1,6 +1,7 @@
 using LibraryManagement.Application.BorrowRecords.DTOs;
 using LibraryManagement.Application.Books;
 using LibraryManagement.Application.Books.DTOs;
+using LibraryManagement.Application.Exceptions;
 using LibraryManagement.Domain.Entity;
 using LibraryManagement.Domain.Enums;
 using LibraryManagement.Infrustructure.BorrowRecords;
@@ -62,7 +63,7 @@ namespace LibraryManagement.Application.BorrowRecords
             
             if (availability == null || !availability.IsAvailable)
             {
-                throw new InvalidOperationException("Book is not available for borrowing");
+                throw new BookUnavailableException("მოცემული წიგნი ამჟამად არ არის ხელმისაწვდომი");
             }
 
             var record = new BorrowRecord

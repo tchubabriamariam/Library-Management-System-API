@@ -150,3 +150,12 @@
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Application.dll
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/LibraryManagement.Application.pdb
 /Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.AspNetCore.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Extensions.Hosting.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Formatting.Compact.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Settings.Configuration.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Sinks.Console.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Sinks.Debug.dll
+/Users/admin/Desktop/Library-Management-System-API/Library Management System/LibraryManagement.API/bin/Debug/net8.0/Serilog.Sinks.File.dll

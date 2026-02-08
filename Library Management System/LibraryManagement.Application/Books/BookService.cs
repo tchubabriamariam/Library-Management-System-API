@@ -1,4 +1,5 @@
 using LibraryManagement.Application.Books.DTOs;
+using LibraryManagement.Application.Exceptions;
 using LibraryManagement.Domain.Entity;
 using LibraryManagement.Infrustructure.Books;
 using LibraryManagement.Infrustructure.Repositories;
@@ -28,12 +29,14 @@ public class BookService : IBookService
             .Include(b => b.Author)
             .Include(b => b.BorrowRecords);
 
-        var totalCount = await query.CountAsync(token);
+        var totalCount = await query.CountAsync(token).ConfigureAwait(false);
 
         var books = await query
+            .OrderBy(b => b.Title)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .ToListAsync(token);
+            .ToListAsync(token)
+            .ConfigureAwait(false);
 
         return new PagedResult<BookDto>
         {
@@ -57,7 +60,12 @@ public class BookService : IBookService
         //int x = 10 / y;
         
 
-        return book == null ? null : MapToDto(book);
+        if (book == null)
+        {
+            throw new EntityNotFoundException("წიგნი", id);
+        } 
+
+        return MapToDto(book);
     }
 
     public async Task<PagedResult<BookDto>> SearchAsync(
@@ -72,12 +80,14 @@ public class BookService : IBookService
 
         var query = _bookRepository.SearchQuery(title, author);
 
-        var totalCount = await query.CountAsync(token);
+        var totalCount = await query.CountAsync(token).ConfigureAwait(false);
 
         var books = await query
+            .OrderBy(b => b.Title)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .ToListAsync(token);
+            .ToListAsync(token)
+            .ConfigureAwait(false);
 
         return new PagedResult<BookDto>
         {

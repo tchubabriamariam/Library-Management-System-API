@@ -3,8 +3,20 @@ using LibraryManagement.API.Infrastructure.middlewares;
 using LibraryManagement.Persistance;
 using LibraryManagement.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+
 // removed extra stuff
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Logging.ClearProviders();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+builder.Logging.AddConsole();
 
 // controllers
 builder.Services.AddControllers();
@@ -33,16 +45,22 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseSerilogRequestLogging();
 app.MapControllers();
 
 try
 {
+    Log.Information("starting web host");
     LibraryManagement.Persistance.Seed.LibraryManagementSeed.Initialize(app.Services); // for first values in database
     app.Run();
 }
 catch (Exception e)
 {
-    Console.WriteLine(e);
+    Log.Fatal(e, "host terminated unexpectedly");
     throw;
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
 }
