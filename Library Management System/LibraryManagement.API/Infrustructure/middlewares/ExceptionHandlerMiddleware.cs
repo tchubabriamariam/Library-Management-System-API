@@ -81,5 +81,12 @@ namespace LibraryManagement.API.Infrastructure.middlewares
             Title = "წიგნი მიუწვდომელია"; 
             Detail = exception.Message;
         }
+        private void HandleException(BorrowRecordNotFoundException exception)
+        {
+            Code = exception.Code;
+            Status = (int)HttpStatusCode.NotFound;
+            Title = "ჩანაწერი ვერ მოიძებნა"; 
+            Detail = exception.Message;
+        }
     }
 }

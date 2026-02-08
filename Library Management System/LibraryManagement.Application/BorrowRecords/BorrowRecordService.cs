@@ -81,18 +81,17 @@ namespace LibraryManagement.Application.BorrowRecords
             return MapToDto(record);
         }
 
-        public async Task<bool> ReturnBookAsync(int id, CancellationToken token = default)
+        public async Task ReturnBookAsync(int id, CancellationToken token = default)
         {
-            var record = await _borrowRepository.GetAsync(token, id);
-            
+            var record = await _borrowRepository.GetAsync(token, id).ConfigureAwait(false);
+
             if (record == null || record.ReturnDate != null)
-                return false;
+            {
+                throw new BorrowRecordNotFoundException(id);
+            }
 
             record.ReturnDate = DateTime.UtcNow;
-            record.Status = BorrowStatus.Returned;
-
-            await _borrowRepository.UpdateAsync(token, record);
-            return true;
+            await _borrowRepository.UpdateAsync(token, record).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<BorrowRecordDto>> GetOverdueRecordsAsync(CancellationToken token = default)

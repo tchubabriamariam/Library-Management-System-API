@@ -19,7 +19,6 @@ public class AuthorsController : ControllerBase
     /// <summary>
     /// Retrieves a paginated list of all authors.
     /// </summary>
-    /// <param name="token">Cancellation token.</param>
     /// <param name="page">The page number to retrieve (starts at 1).</param>
     /// <param name="pageSize">The number of books per page.</param>
     /// <response code="200">Returns the list of authors.</response>

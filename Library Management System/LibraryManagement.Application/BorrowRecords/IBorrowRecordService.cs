@@ -12,6 +12,6 @@ public interface IBorrowRecordService
     Task<BorrowRecordDto> CheckOutBookAsync(
         CreateBorrowRecordDto createDto, 
         CancellationToken token = default);
-    Task<bool> ReturnBookAsync(int id, CancellationToken token = default);
+    Task ReturnBookAsync(int id, CancellationToken token = default);
     Task<IEnumerable<BorrowRecordDto>> GetOverdueRecordsAsync(CancellationToken token = default);
 }
