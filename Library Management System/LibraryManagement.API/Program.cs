@@ -1,3 +1,4 @@
+using System.Reflection;
 using Library_Management_System.Infrustructure.extentions;
 using LibraryManagement.API.Infrastructure.middlewares;
 using LibraryManagement.Persistance;
@@ -23,8 +24,16 @@ builder.Services.AddControllers();
 
 // swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
+});
 // EF is here
 builder.Services.AddDbContext<LibraryManagementContext>(options =>
     options.UseSqlServer(

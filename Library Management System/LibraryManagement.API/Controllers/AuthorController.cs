@@ -16,6 +16,14 @@ public class AuthorsController : ControllerBase
         _authorService = authorService;
     }
 
+    /// <summary>
+    /// Retrieves a paginated list of all authors.
+    /// </summary>
+    /// <param name="token">Cancellation token.</param>
+    /// <param name="page">The page number to retrieve (starts at 1).</param>
+    /// <param name="pageSize">The number of books per page.</param>
+    /// <response code="200">Returns the list of authors.</response>
+    [ProducesResponseType(typeof(PagedResult<AuthorDto>), StatusCodes.Status200OK)]
     [HttpGet] // works
     public async Task<ActionResult<PagedResult<AuthorDto>>> GetAll(
         CancellationToken token,
@@ -26,6 +34,14 @@ public class AuthorsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Retrieves details for a specific author by their ID.
+    /// </summary>
+    /// <param name="id">The author's unique identifier.</param>
+    /// <response code="200">Returns the requested author details.</response>
+    /// <response code="404">If the author is not found in the system.</response>
+    [ProducesResponseType(typeof(AuthorDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [HttpGet("{id:int}")] // works
     public async Task<ActionResult<AuthorDto>> GetById(CancellationToken token, int id)
     {
@@ -37,6 +53,14 @@ public class AuthorsController : ControllerBase
         return Ok(author);
     }
 
+    /// <summary>
+    /// Retrieves all books written by a specific author.
+    /// </summary>
+    /// <param name="id">Unique ID of the author</param>
+    /// <param name="page">Page number, starts at 1</param>
+    /// <param name="pageSize">Number of items per page</param>
+    /// <response code="200">Returns a paginated list of books for the author.</response>
+    [ProducesResponseType(typeof(PagedResult<BookDto>), StatusCodes.Status200OK)]
     [HttpGet("{id:int}/books")] // works
     public async Task<ActionResult<PagedResult<BookDto>>> GetBooksByAuthor(
         CancellationToken token,
@@ -48,6 +72,23 @@ public class AuthorsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Registers a new author in the library system.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// 
+    ///     POST /api/Authors
+    ///     {
+    ///        "firstName": "Akaki",
+    ///        "lastName": "Tsereteli",
+    ///        "biography": "Famous Georgian poet and public figure.",
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the ID of the newly created author.</response>
+    /// <response code="400">If the input data is invalid.</response>
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [HttpPost] // works
     public async Task<ActionResult<int>> Create(
         CancellationToken token,
@@ -57,6 +98,14 @@ public class AuthorsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 
+    /// <summary>
+    /// Updates the details of an existing author.
+    /// </summary>
+    /// <param name="id">The unique ID of the book to update</param>
+    /// <response code="204">Update successful.</response>
+    /// <response code="404">Author not found.</response>
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [HttpPut("{id:int}")] // works
     public async Task<IActionResult> Update(
         CancellationToken token,
@@ -71,6 +120,14 @@ public class AuthorsController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes an author from the system.
+    /// </summary>
+    /// /// <param name="id">Unique ID of the author</param>
+    /// <response code="204">Deletion successful.</response>
+    /// <response code="404">Author not found.</response>
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [HttpDelete("{id:int}")] // works
     public async Task<IActionResult> Delete(CancellationToken token, int id)
     {
